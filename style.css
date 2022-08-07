@@ -1,10 +1,39 @@
 #fondo{
-    background-color: black;
+    background-color:rgba(11, 11, 158, 0.459);
 }
 
 .titulo{
-    color:blue;
+    color:rgb(234, 234, 245);
     font-size: 300%;
     text-align: center;
+    margin-right: 6%;
 }
 
+#sec{
+    display: flex;
+    flex-direction:row;
+    justify-content:center ;
+    align-items: stretch;
+    margin-left: -7%;
+
+}
+
+.red{
+    height:90%;
+    width: 465px;
+    
+}
+
+
+.theLast{
+height:90%;
+width: 500px;
+
+}
+
+.cr{
+    height:90%;
+    width: 130%;
+    
+    
+}
