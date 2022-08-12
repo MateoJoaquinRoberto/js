@@ -1,11 +1,12 @@
-//Objetos
+//Juegos disponobles 
 const Juegos=[
   {
     nombre:" Red dead redemption 2 ",
     tipo:"AAA",
     modo:"Singleplayer y Multiplayer",
     desarrollador:"Rockstar",
-    precio:2700
+    precio:2700,
+    foto:"/imagenes/red.jfif"
   },
   
   {
@@ -13,7 +14,8 @@ const Juegos=[
     tipo:"Aventura",
     modo:"Singleplayer",
     desarrollador:"Nautydog",
-    precio:1500
+    precio:1500,
+    foto:src="/imagenes/the last of.jpg"
 },
 
 {
@@ -21,7 +23,8 @@ const Juegos=[
   tipo:"Estrategia",
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Paradox",
-  precio:3800
+  precio:3800,
+  foto: src="/imagenes/crushader.jfif"
 },
 
 {
@@ -29,7 +32,8 @@ const Juegos=[
   tipo:"Simulador",
   modo:"Singleplayer",
   desarrollador:"Ea",                                        
-  precio:2000
+  precio:2000,
+  foto:src="/imagenes/sims.jpg"
 },
 
 {
@@ -37,7 +41,8 @@ const Juegos=[
   tipo:"Aventura",
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Rockstar",
-  precio:3000
+  precio:3000,
+  foto:src="/imagenes/gta2.jpg"
 },                                                      
 
 {
@@ -45,7 +50,8 @@ const Juegos=[
   tipo:"Deportes",
   modo:"Singleplayer y Multiplayer",
   desarrollador:"2k",
-  precio:4000
+  precio:4000,
+  foto:src="/imagenes/nba1.jpg"
 },
 
 {
@@ -53,7 +59,8 @@ const Juegos=[
   tipo:"Shotter",
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Davon",
-  precio:1000
+  precio:1000,
+  foto:src="/imagenes/hunt.jpg"
 },
 
 {
@@ -61,12 +68,13 @@ const Juegos=[
   tipo:"Puzzles",
   modo:"Singleplayer",
   desarrollador:"Momon",
-  precio:500
+  precio:500,
+  foto:src="/imagenes/stray.jpg"
 },
 
 ];
 
-//agregar al carrito
+//agregar al carrito y seleccion de productos
 
 let compras=[]
 
@@ -136,17 +144,75 @@ while(VideosJuegos!= "No"){
   }
 }
 
+//Suma final con impuestos 
 const total = compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
 console.log("El total de los juegos más la suma de impuestos es de: " + "$" + total)
 
+//doom
+console.dir(document.body)
 
-/* const JuegosConImpuestos=Juegos.map(juego => {
-  return {
-      nombre: Juego.nombre,
-      tipo: Juego.tipo,
-      precio: Juego.precio * 1.71
-  }
-/* ); */ 
+//getElementById (agrgado de textos y cambios del sitio)
+let fondo = document.getElementById("fondo");
+console.log(fondo.innerHTML);
+fondo.style.backgroundColor="grey";
+
+ let titulo = document.getElementById("titulo")
+console.log( titulo.innerText )
+titulo.innerText="Bienvenido a Steamcito Julio"
+console.log(titulo.innerText); 
+
+let titulos= document.getElementById("titulo")
+titulo.innerHTML = "<h1>Steamcito</h1><h2>Bienvenido!!</h2><h3>Espero te guste el sitio Julio</h3>"
+
+
+//cartas
+let cartas=document.getElementById("cartas");
+for(const juego of Juegos){
+  let carta=document.createElement("div");
+  carta.className="card col-md-3";
+  carta.innerHTML=`
+  <img src=${juego.foto} class="card-img-top">
+  <div class="card-body">
+  <h5 class="card-title">${juego.nombre}</h5>
+  <p class="card-text">${"$" + juego.precio}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+  <li class="list-group-item">${juego.tipo}</li>
+            <li class="list-group-item">${juego.modo}</li>
+            <li class="list-group-item">${"desarrolador: "+ " "+juego.desarrollador}</li>
+            </ul>
+            <button class="btn btn-primary">Comprar</a>
+            `;
+            cartas.append(carta);
+          }
+          
+          //tabla
+          let tabla=document.createElement("table");
+          tabla.className="table table-striped";
+          let tablaBody=document.createElement("tbody");
+          for(const juego of Juegos){
+              tablaBody.innerHTML+=`
+              <tr>
+                  <td>${juego.nombre}</td>
+                  <td>${juego.tipo}</td>
+                  <td>${juego.precio}</td>
+              </tr>
+            `;
+           }
+          
+          tabla.append(tablaBody);
+          let articuloInferior = document.getElementById("inferior");
+          articuloInferior.append(tabla);
+          
+          
+          
+          /* const JuegosConImpuestos=Juegos.map(juego => {
+            return {
+              nombre: Juego.nombre,
+              tipo: Juego.tipo,
+              precio: Juego.precio * 1.71
+            }
+            /* ); */ 
 
 /* alert(JuegosConImpuestos) */
 
