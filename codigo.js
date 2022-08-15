@@ -69,7 +69,7 @@ const Juegos=[
   modo:"Singleplayer",
   desarrollador:"Momon",
   precio:500,
-  foto:src="./imagenes/stray.jpg"
+  foto:"./imagenes/stray.jpg"
 },
 
 ];
@@ -181,7 +181,7 @@ for(const juego of Juegos){
             <li class="list-group-item">${juego.modo}</li>
             <li class="list-group-item">${"desarrolador: "+ " "+juego.desarrollador}</li>
             </ul>
-            <button class="btn btn-primary">Comprar</a>
+            <a id="miBoton" button class="btn btn-primary">Comprar</a>
             `;
             cartas.append(carta);
           }
@@ -204,25 +204,23 @@ for(const juego of Juegos){
           let articuloInferior = document.getElementById("inferior");
           articuloInferior.append(tabla);
 
-          //eventos
+          //eventos(sin terminar )
+ let miBoton=document.getElementById("miBoton");         
+ miBoton.onclick=()=>{
+  alert("Producto agregado al carrito")
+  compras.push(Juegos.nombre)
+  console.log(compras)
+ }
           
-          
-          
-          /* const JuegosConImpuestos=Juegos.map(juego => {
-            return {
-              nombre: Juego.nombre,
-              tipo: Juego.tipo,
-              precio: Juego.precio * 1.71
-            }
-            /* ); */ 
-
+        
+ 
 /* alert(JuegosConImpuestos) */
 
 //cuotas y funsion con iva
 /*function calcularIva( precio){
   let precioConIva = precio * 1.75;
   return precioConIva
-}
+
   
   
   let conIva = calcularIva(parseInt(prompt("valor del juego sin impuestos")));
