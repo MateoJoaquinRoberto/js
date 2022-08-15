@@ -6,7 +6,7 @@ const Juegos=[
     modo:"Singleplayer y Multiplayer",
     desarrollador:"Rockstar",
     precio:2700,
-    foto:"/imagenes/red.jfif"
+    foto:"../imagenes/red.jfif"
   },
   
   {
@@ -15,7 +15,7 @@ const Juegos=[
     modo:"Singleplayer",
     desarrollador:"Nautydog",
     precio:1500,
-    foto:src="/imagenes/the last of.jpg"
+    foto:src="../imagenes/the last of.jpg"
 },
 
 {
@@ -24,7 +24,7 @@ const Juegos=[
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Paradox",
   precio:3800,
-  foto: src="/imagenes/crushader.jfif"
+  foto: src="../imagenes/crushader.jfif"
 },
 
 {
@@ -33,7 +33,7 @@ const Juegos=[
   modo:"Singleplayer",
   desarrollador:"Ea",                                        
   precio:2000,
-  foto:src="/imagenes/sims.jpg"
+  foto:src="../imagenes/sims.jpg"
 },
 
 {
@@ -42,7 +42,7 @@ const Juegos=[
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Rockstar",
   precio:3000,
-  foto:src="/imagenes/gta2.jpg"
+  foto:src="../imagenes/gta2.jpg"
 },                                                      
 
 {
@@ -51,7 +51,7 @@ const Juegos=[
   modo:"Singleplayer y Multiplayer",
   desarrollador:"2k",
   precio:4000,
-  foto:src="/imagenes/nba1.jpg"
+  foto:src="../imagenes/nba1.jpg"
 },
 
 {
@@ -60,7 +60,7 @@ const Juegos=[
   modo:"Singleplayer y Multiplayer",
   desarrollador:"Davon",
   precio:1000,
-  foto:src="/imagenes/hunt.jpg"
+  foto:src="../imagenes/hunt.jpg"
 },
 
 {
@@ -69,7 +69,7 @@ const Juegos=[
   modo:"Singleplayer",
   desarrollador:"Momon",
   precio:500,
-  foto:src="/imagenes/stray.jpg"
+  foto:src="../imagenes/stray.jpg"
 },
 
 ];
