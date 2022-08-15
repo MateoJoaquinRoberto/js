@@ -51,7 +51,7 @@ const Juegos=[
   modo:"Singleplayer y Multiplayer",
   desarrollador:"2k",
   precio:4000,
-  foto:src="../imagenes/nba1.jpg"
+  foto:src="./imagenes/nba1.jpg"
 },
 
 {
@@ -203,6 +203,8 @@ for(const juego of Juegos){
           tabla.append(tablaBody);
           let articuloInferior = document.getElementById("inferior");
           articuloInferior.append(tabla);
+
+          //eventos
           
           
           
