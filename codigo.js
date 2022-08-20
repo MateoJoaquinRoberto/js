@@ -92,12 +92,13 @@ let compras=[]
 console.dir(document.body)
 
 
+
 renderizarProducto()
 //cartas
 function renderizarProducto(){ 
-let cartas=document.getElementById("cartas");
-for(const juego of Juegos){
-  let carta=document.createElement("div");
+  let cartas=document.getElementById("cartas");
+  for(const juego of Juegos){
+    let carta=document.createElement("div");
   carta.className="card col-md-3";
   carta.innerHTML=`
   <img src=${juego.foto} class="card-img-top">
@@ -121,10 +122,19 @@ for(const juego of Juegos){
 Juegos.forEach(juego=>{
   document.getElementById(`btn${juego.id}`).addEventListener("click",function(){
     agregarAlCarrito(juego);
-    })
-
+    let carro = document.getElementById("carro")
+    carro.innerText="Este es tu carrito de compras actual ";
+    let newBtn = document.createElement('button');
+     newBtn.id = 'newBtn';
+     newBtn.textContent = 'Finalizar';
+     newBtn.style.background="#0d6efd";
+     newBtn.style.color="white";
+     newBtn.style.borderRadius="solid";
+     newBtn.style.marginLeft="76%";
+     document.getElementById('listo').append(newBtn);
+    
   })
-
+})
 }
 
 
@@ -138,14 +148,41 @@ function agregarAlCarrito(juego){
       <td>${juego.nombre}</td>
       <td>${juego.desarrollador}</td>
       <td>${juego.precio}</td>
-    </tr>`
-    alert("Producto agregado al carrito de compras")
+      </tr> 
+      `
+      alert("Producto agregado al carrito de compras")
+    }
     
-    
+
     //Suma final con impuestos 
-    const total = compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
-    alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
+    final()
+  function final(){
+    compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
+  alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //cuotas (implimentar al final )
 /* alert(JuegosConImpuestos) */
