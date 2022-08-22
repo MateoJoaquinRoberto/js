@@ -86,7 +86,12 @@ const Juegos=[
 
 let compras=[]
 
+//suma del todo el carro mas impuestos
 
+function final(){
+  compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
+alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
+}
 
 //doom
 console.dir(document.body)
@@ -124,18 +129,20 @@ Juegos.forEach(juego=>{
     agregarAlCarrito(juego);
     let carro = document.getElementById("carro")
     carro.innerText="Este es tu carrito de compras actual ";
-    let newBtn = document.createElement('button');
-     newBtn.id = 'newBtn';
-     newBtn.textContent = 'Finalizar';
-     newBtn.style.background="#0d6efd";
-     newBtn.style.color="white";
-     newBtn.style.borderRadius="solid";
-     newBtn.style.marginLeft="76%";
-     document.getElementById('listo').append(newBtn);
-    
+    localStorage.setItem("compras",JSON.stringify(compras));
   })
 })
+newBtn.id = 'newBtn';
+let newBtn = document.createElement('button');
+newBtn.textContent = 'Finalizar';
+ newBtn.style.background="#0d6efd";
+ newBtn.style.color="white";
+ newBtn.style.borderRadius="solid";
+ newBtn.style.marginLeft="76%";
+ document.getElementById('listo').append(newBtn)
 }
+
+
 
 
 //agregar al carrito
@@ -155,11 +162,7 @@ function agregarAlCarrito(juego){
     
 
     //Suma final con impuestos 
-    final()
-  function final(){
-    compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
-  alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
-  }
+  
 
 
 

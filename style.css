@@ -9,8 +9,13 @@
     margin-right: 6%;
 }
 
-/*#listo{ 
-padding: 0;
-border: none;
-background: none;
+.espacio{ 
+    color: black;
+background-color:black ;
+}
+
+#carro{
+    color: white;
+    background-color: black;
+    margin-top: 1%;
 }
