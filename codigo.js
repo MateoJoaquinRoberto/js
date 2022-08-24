@@ -86,12 +86,6 @@ const Juegos=[
 
 let compras=[]
 
-//suma del todo el carro mas impuestos
-
-function final(){
-  compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
-alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
-}
 
 //doom
 console.dir(document.body)
@@ -129,11 +123,13 @@ Juegos.forEach(juego=>{
     agregarAlCarrito(juego);
     let carro = document.getElementById("carro")
     carro.innerText="Este es tu carrito de compras actual ";
-    localStorage.setItem("compras",JSON.stringify(compras));
+    //ayuda con el Json para que en los valores se recopilen todos los juegos 
+    localStorage.setItem("juego",juego.nombre);
+    localStorage.setItem("precio" ,juego.precio);
   })
 })
-newBtn.id = 'newBtn';
 let newBtn = document.createElement('button');
+newBtn.id = 'newBtn';
 newBtn.textContent = 'Finalizar';
  newBtn.style.background="#0d6efd";
  newBtn.style.color="white";
@@ -149,30 +145,35 @@ newBtn.textContent = 'Finalizar';
 function agregarAlCarrito(juego){
   compras.push(juego);
   console.log(compras)
-
+  
   document.getElementById("inferior").innerHTML+=`
-    <tr>
-      <td>${juego.nombre}</td>
-      <td>${juego.desarrollador}</td>
+  <tr>
+  <td>${juego.nombre}</td>
+  <td>${juego.desarrollador}</td>
       <td>${juego.precio}</td>
       </tr> 
       `
       alert("Producto agregado al carrito de compras")
     }
     
-
     //Suma final con impuestos 
-  
+    document.getElementById('listo').addEventListener("click",function(){
+    let total= compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
+    alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
+    //ayuda con esto tambien
+    let promocion = (compras>2) ? true : false
 
-
-
-
-
-
-
-
-
-
+    promocion ? alert("Al tener más de dos juegos en el carrito aplica una promocion") : alert("Agregando más juegos podes tener un descuento")
+    
+  })
+    
+  localStorage.getItem("juego",juego.nombre);
+  localStorage.setItem("precio" ,juego.precio);
+    
+    
+    
+    
+    
 
 
 
