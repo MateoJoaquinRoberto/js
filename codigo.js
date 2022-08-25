@@ -17,7 +17,7 @@ const Juegos=[
     modo:"Singleplayer",
     desarrollador:"Nautydog",
     precio:1500,
-    foto:src="./imagenes/the last of.jpg"
+    foto:src="./imagenes/thelastof.jpg"
 },
 
 {
@@ -123,9 +123,7 @@ Juegos.forEach(juego=>{
     agregarAlCarrito(juego);
     let carro = document.getElementById("carro")
     carro.innerText="Este es tu carrito de compras actual ";
-    //ayuda con el Json para que en los valores se recopilen todos los juegos 
-    localStorage.setItem("juego",juego.nombre);
-    localStorage.setItem("precio" ,juego.precio);
+    localStorage.setItem("compras",JSON.stringify(compras))
   })
 })
 let newBtn = document.createElement('button');
@@ -138,6 +136,11 @@ newBtn.textContent = 'Finalizar';
  document.getElementById('listo').append(newBtn)
 }
 
+let comprasMemoria = JSON.parse(localStorage.getItem("compras"));
+
+comprasMemoria.forEach(juego=>{
+  agregarAlCarrito(juego);
+})
 
 
 
@@ -160,16 +163,18 @@ function agregarAlCarrito(juego){
     document.getElementById('listo').addEventListener("click",function(){
     let total= compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
     alert("El total de los juegos más la suma de impuestos es de: " + "$" + total)
-    //ayuda con esto tambien
-    let promocion = (compras>2) ? true : false
+
+    let promocion = (compras.length>2) 
 
     promocion ? alert("Al tener más de dos juegos en el carrito aplica una promocion") : alert("Agregando más juegos podes tener un descuento")
-    
+    if (promocion){
+      total*=0.7
+    }else if (promocion>3){
+      total*=0.9
+    }
   })
     
-  localStorage.getItem("juego",juego.nombre);
-  localStorage.setItem("precio" ,juego.precio);
-    
+  
     
     
     
