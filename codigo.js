@@ -121,6 +121,8 @@ function renderizarProducto(){
 Juegos.forEach(juego=>{
   document.getElementById(`btn${juego.id}`).addEventListener("click",function(){
     agregarAlCarrito(juego);
+    let btn$ =  document.getElementById(`btn${juego.id}`)
+    btn$.innerText="Juego ya agregado al carrito"
     let carro = document.getElementById("carro")
     carro.innerText="Este es tu carrito de compras actual ";
     localStorage.setItem("compras",JSON.stringify(compras))
@@ -156,7 +158,7 @@ function agregarAlCarrito(juego){
       <td>${juego.precio}</td>
       </tr> 
       `
-      alert("Producto agregado al carrito de compras")
+     
     }
     
     //Suma final con impuestos 
