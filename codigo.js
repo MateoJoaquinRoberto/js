@@ -143,13 +143,18 @@ let comprasMemoria = JSON.parse(localStorage.getItem("compras"));
 comprasMemoria.forEach(juego=>{
   agregarAlCarrito(juego);
 })
-
-
+//spread 
+JuegoPremiado={
+  ...Juegos[1],
+  premio:"la mejor banda sonora "
+}
+console.log(JuegoPremiado)
 
 //agregar al carrito
 function agregarAlCarrito(juego){
   compras.push(juego);
   console.log(compras)
+
   
   document.getElementById("inferior").innerHTML+=`
   <tr>
@@ -160,7 +165,8 @@ function agregarAlCarrito(juego){
       `
      
     }
-    
+
+  
     //Suma final con impuestos 
     document.getElementById('listo').addEventListener("click",function(){
     let total= compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
@@ -183,7 +189,7 @@ function agregarAlCarrito(juego){
     
 
 
-
+  
 
 
 
