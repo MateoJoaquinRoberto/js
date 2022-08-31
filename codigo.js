@@ -142,9 +142,11 @@ newBtn.textContent = 'Finalizar';
 
 let comprasMemoria = JSON.parse(localStorage.getItem("compras"));
 
-comprasMemoria.forEach(juego=>{
-  agregarAlCarrito(juego);
-})
+if (comprasMemoria != null && comprasMemoria !=undefined){ 
+  comprasMemoria.forEach(juego=>{
+    agregarAlCarrito(juego);
+  })
+}
 //spread 
 JuegoPremiado={
   ...Juegos[1],
@@ -172,18 +174,17 @@ function agregarAlCarrito(juego){
     //Suma final con impuestos 
     document.getElementById('listo').addEventListener("click",function(){
     let total= compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
-    swal.fire("El total de los juegos más la suma de impuestos es de: ", "$" + total, "success");
+    swal.fire("El total de los juegos más la suma de impuestos es de: ", "$" + total, "success").then(()=> { 
+      let promocion = (compras.length>2) 
     
-    
+      promocion ? swal.fire("DESCUENTO","Al tener más de dos juegos en el carrito aplica una promocion") : swal.fire("DESCUENTO","Agregando más juegos podes tener un descuento")
+      if (promocion){
+        total*=0.7
+      }else if (promocion>3){
+        total*=0.9
+      };
+   });
 
-    let promocion = (compras.length>2) 
-
-    promocion ? swal.fire("DESCUENTO","Al tener más de dos juegos en el carrito aplica una promocion") : swal.fire("DESCUENTO","Agregando más juegos podes tener un descuento")
-    if (promocion){
-      total*=0.7
-    }else if (promocion>3){
-      total*=0.9
-    };
   })
     
   
