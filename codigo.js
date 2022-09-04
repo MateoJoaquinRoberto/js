@@ -1,4 +1,16 @@
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '938ff85bd2msh3a2c5158a349111p10615cjsn559d817c2df2',
+		'X-RapidAPI-Host': 'videogames-news2.p.rapidapi.com'
+	}
+};
 
+fetch('https://videogames-news2.p.rapidapi.com/videogames_news/search_news?query=GTA', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+  
 
 //Juegos disponobles 
 const Juegos=[
@@ -170,8 +182,9 @@ function agregarAlCarrito(juego){
      
   }
 
+
   
-    //Suma final con impuestos 
+  //Suma final con impuestos 
     document.getElementById('listo').addEventListener("click",function(){
     let total= compras.reduce((ecc, el) => ecc + el.precio *1.71, 0 )
     swal.fire("El total de los juegos más la suma de impuestos es de: ", "$" + total, "success").then(()=> { 
@@ -186,6 +199,7 @@ function agregarAlCarrito(juego){
    });
 
   })
+
     
   
     
