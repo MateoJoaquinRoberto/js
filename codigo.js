@@ -1,17 +1,21 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '938ff85bd2msh3a2c5158a349111p10615cjsn559d817c2df2',
-		'X-RapidAPI-Host': 'videogames-news2.p.rapidapi.com'
-	}
-};
+function datos(){
+  const URLGET='https://free-to-play-games-database.p.rapidapi.com/api/games';
+  fetch(URLGET)
+    .then(resultado => resultado.json())
+    .then(info => {
+        //console.log(info.Juegos)
+        Juegos.data.forEach(juego =>{
+          document.getElementById("info").innerHTML+=`
+              <tr>
+                  <td>${juego.title}</td>
+                  <td><img src="${juego.image}"></td>
+              </tr>   
+                  `;
+        });
+    })
+}
 
-fetch('https://videogames-news2.p.rapidapi.com/videogames_news/search_news?query=GTA', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-  
-
+datos();
 //Juegos disponobles 
 const Juegos=[
   {
@@ -95,6 +99,34 @@ const Juegos=[
 },
 
 ];
+
+ //inicio de sesion del usuario
+ for(let i= 1;i<=3;i++){
+  let Usuario=prompt("Pone tu nombre de usuario")
+  let contraseña=prompt("Ingresa tu contraseña")
+  let IntentosRestantes=3-i;
+  if(Usuario=="Laura"&&contraseña=="coder"){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Bienvenida Laura',
+      showConfirmButton: false,
+      timer: 1500,
+    
+    })
+    break
+  }
+   while(Usuario!="Laura"&&contraseña!="coder"){
+     alert("ERROR, te quedan "+ IntentosRestantes +" intentos");
+     break
+    } Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: 'El nombre de usuario o la clave,son incorrectas',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  }
 
 //agregar al carrito y seleccion de productos
 
@@ -218,33 +250,5 @@ function agregarAlCarrito(juego){
 
 
 
-
-
-//cuotas (implimentar al final )
-/* alert(JuegosConImpuestos) */
-
-//cuotas y funsion con iva
-/*function calcularIva( precio){
-  let precioConIva = precio * 1.75;
-  return precioConIva
-  
-  
-  
-  let conIva = calcularIva(parseInt(prompt("valor del juego sin impuestos")));
-  alert("el precio con impuestos es $ "+conIva);
-  
-  
-  let cuota=parseInt(prompt("cuantas cuotas"))
-  if(cuota==2){
-    alert("cada cuota sera de $"+(precio+(precio*5/100))/2);
-  }else if(cuota==3){ 
-    alert("cada cuota sera de $"+(conIva+(conIva*10/100))/3);
-    }else if(cuota==4){ 
-    alert("cada cuota sera de $"+(conIva+(conIva*15/100))/4);;
-    }else if(cuota==5){ 
-    alert("cada cuota sera de $"+(conIva+(conIva*20/100))/5);;
-    }else if(cuota==6){ 
-    alert("cada cuota sera de $"+(conIva+(conIva*25/100))/6);
-    }*/
 
 
