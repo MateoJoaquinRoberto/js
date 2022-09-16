@@ -1,21 +1,16 @@
-function datos(){
-  const URLGET='https://free-to-play-games-database.p.rapidapi.com/api/games';
-  fetch(URLGET)
-    .then(resultado => resultado.json())
-    .then(info => {
-        //console.log(info.Juegos)
-        Juegos.data.forEach(juego =>{
-          document.getElementById("info").innerHTML+=`
-              <tr>
-                  <td>${juego.title}</td>
-                  <td><img src="${juego.image}"></td>
-              </tr>   
-                  `;
-        });
-    })
-}
+//api 
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '938ff85bd2msh3a2c5158a349111p10615cjsn559d817c2df2',
+		'X-RapidAPI-Host': 'twitch-game-popularity.p.rapidapi.com'
+	}
+};
 
-datos();
+fetch('https://twitch-game-popularity.p.rapidapi.com/games', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
 //Juegos disponobles 
 const Juegos=[
   {
@@ -105,7 +100,7 @@ const Juegos=[
   let Usuario=prompt("Pone tu nombre de usuario")
   let contraseña=prompt("Ingresa tu contraseña")
   let IntentosRestantes=3-i;
-  if(Usuario=="Laura"&&contraseña=="coder"){
+  if(Usuario=="laura"||"LAURA"||"laura"&&contraseña=="coder"||"Coder"||"CODER"){
     Swal.fire({
       position: 'top-end',
       icon: 'success',
