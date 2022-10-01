@@ -95,33 +95,56 @@ const Juegos = [
 ];
 
 //inicio de sesion del usuario
-//inicio de sesion del usuario
-for(let i= 1;i<=3;i++){
-  let Usuario=prompt("Pone tu nombre de usuario")
-  let contraseña=prompt("Ingresa tu contraseña")
-  let IntentosRestantes=3-i;
-  if(Usuario=="Laura"&&contraseña=="coder"){
+for (let i = 1; i <= 3; i++) {
+  let Usuario = prompt("Pone tu nombre de usuario");
+  let contraseña = prompt("Ingresa tu contraseña");
+  let IntentosRestantes = 3 - i;
+  if (Usuario == "Laura" && contraseña == "coder") {
     Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Bienvenida Laura',
+      position: "top-end",
+      icon: "success",
+      title: "Bienvenida Laura",
       showConfirmButton: false,
       timer: 1500,
-
-    })
+    });
     break;
   }
-   while(Usuario!=="Laura"&&contraseña!=="coder"){
-     alert("ERROR, te quedan "+ IntentosRestantes +" intentos");
-     break;
-    } Swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: 'El nombre de usuario o la clave,son incorrectas',
-      showConfirmButton: false,
-      timer: 2000
-    })
+  while (Usuario !== "Laura" && contraseña !== "coder") {
+    alert("ERROR, te quedan " + IntentosRestantes + " intentos");
+    break;
   }
+  Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "El nombre de usuario o la clave,son incorrectas",
+    showConfirmButton: false,
+    timer: 2000,
+  });
+  function renderizarProducto() {
+    let cartas = document.getElementById("cartas");
+    for (const juego of Juegos) {
+      let carta = document.createElement("div");
+      carta.className = "card col-md-3";
+      carta.innerHTML = `
+      <img src=${juego.foto} class="card-img-top">
+      <div class="card-body">
+      <h5 class="card-title">${juego.nombre}</h5>
+      <p class="card-text">${"$" + juego.precio}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item">${juego.tipo}</li>
+      <li class="list-group-item">${juego.modo}</li>
+      <li class="list-group-item">${
+        "desarrolador: " + " " + juego.desarrollador
+      }</li>
+      </ul>
+      <br>
+      <button class="btn btn-danger" id='btn${juego.id}'>Registrate</button>
+  `;
+      cartas.append(carta);
+    }
+  }
+}
 
 //agregar al carrito y seleccion de productos
 
@@ -155,18 +178,20 @@ function renderizarProducto() {
   `;
     cartas.append(carta);
   }
-  
+
   //eventos
-  Juegos.forEach(juego=>{
-  document.getElementById(`btn${juego.id}`).addEventListener("click", function () {
+  Juegos.forEach((juego) => {
+    document
+      .getElementById(`btn${juego.id}`)
+      .addEventListener("click", function () {
         agregarAlCarrito(juego);
-        let btn$ = document.getElementById(`btn${juego.id}`)
-        btn$.innerText = "Juego ya agregado al carrito"
-        let carro = document.getElementById("carro")
-        carro.innerText =  "Este es tu carrito de compras actual ";
-        localStorage.setItem("compras", JSON.stringify(compras));
-      })
-  })
+        let btn$ = document.getElementById(`btn${juego.id}`);
+        btn$.innerText = "Juego ya agregado al carrito";
+        let carro = document.getElementById("carro");
+        carro.innerText = "Este es tu carrito de compras actual ";
+        sessionStorage.setItem("compras", JSON.stringify(compras));
+      });
+  });
   let newBtn = document.createElement("button");
   newBtn.id = "newBtn";
   newBtn.textContent = "Finalizar";
@@ -178,20 +203,20 @@ function renderizarProducto() {
 
   let Borrar = document.createElement("button");
   Borrar.id = "trash";
-  Borrar.textContent = "Eliminar "
+  Borrar.textContent = "Eliminar ";
   Borrar.style.background = "red";
   Borrar.style.color = "black";
   Borrar.style.borderRadius = "solid";
   Borrar.style.marginLeft = "76%";
-  document.getElementById("borron").append(Borrar)
+  document.getElementById("borron").append(Borrar);
 }
 
-let comprasMemoria = JSON.parse(localStorage.getItem("compras"));
+let comprasMemoria = JSON.parse(sessionStorage.getItem("compras"));
 
 if (comprasMemoria != null && comprasMemoria != undefined) {
   comprasMemoria.forEach((juego) => {
     agregarAlCarrito(juego);
-  })
+  });
 }
 
 //spread
@@ -216,51 +241,50 @@ function agregarAlCarrito(juego) {
 }
 
 //eliminar del carrito
-document.getElementById("trash").addEventListener("click",function(){
+document.getElementById("trash").addEventListener("click", function () {
   Swal.fire({
-    title: 'Estas seguro?',
+    title: "Estas seguro?",
     text: "Se eliminara el carrito de compras",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Borrar!'
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Borrar!",
   }).then((result) => {
-    if (result.isConfirmed) { 
-      Swal.fire(
-        'Deleted!',
-        'Tu carrito a sido borrado.',
-        'success'
-      )
+    if (result.isConfirmed) {
+      Swal.fire("Deleted!", "Tu carrito a sido borrado.", "success");
     }
-  })
-  
-})
+  });
+});
 //Suma final con impuestos
 document.getElementById("listo").addEventListener("click", function () {
   let total = compras.reduce((ecc, el) => ecc + el.precio * 1.71, 0);
+  if(total==" "){
+    console.alert("agruege juegos al carrito")
+  }
   swal
-    .fire(
-      "El total de los juegos más la suma de impuestos es de: ",
-      "$" + total,
-      "success"
+  .fire(
+    "El total de los juegos más la suma de impuestos es de: ",
+    "$" + total,
+    "success"
     )
     .then(() => {
       let promocion = compras.length > 2;
-
+      
       promocion
-        ? swal.fire(
-            "DESCUENTO",
-            "Al tener más de dos juegos en el carrito aplica una promocion"
-          )
+      ? swal.fire(
+        "DESCUENTO",
+        "Al tener más de dos juegos en el carrito aplica una promocion"
+        )
         : swal.fire(
-            "DESCUENTO",
-            "Agregando más juegos podes tener un descuento"
+          "DESCUENTO",
+          "Agregando más juegos podes tener un descuento"
           );
-      if (promocion) {
-        total *= 0.7;
-      } else if (promocion > 3) {
-        total *= 0.9;
-      }
-    })
-})
+          if (promocion) {
+            total *= 0.7;
+          } else if (promocion > 3) {
+            total *= 0.9;
+          }
+        })
+      }); 
+
